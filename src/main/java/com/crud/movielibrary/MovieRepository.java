@@ -29,4 +29,9 @@ public class MovieRepository {
         jdbcTemplate.update("UPDATE movie SET movie=?, rating=? WHERE id=?", movie.getMovie(), movie.getRating(), movie.getId());
         return 1;
     }
+
+    public int deleteMovie(int id){
+        jdbcTemplate.update("DELETE FROM movie WHERE id=?", id);
+        return 1;
+    }
 }

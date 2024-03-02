@@ -42,4 +42,24 @@ public class MovieController {
             return 1;
         } else return -1;
     }
+
+    @PatchMapping("/{id}")
+    public int patchUpdate(@PathVariable("id") int id, @RequestBody Movie updatedMovie){
+        Movie movie = movieRepository.getById(id);
+
+        if (movie != null){
+            if (updatedMovie.getMovie() != null) movie.setMovie(updatedMovie.getMovie());
+            if (updatedMovie.getRating() > 0) movie.setRating(updatedMovie.getRating());
+
+            movieRepository.updateMovie(movie);
+
+            return 1;
+        } else return -1;
+    }
+
+    @DeleteMapping("/{id}")
+    public int deleteMovie(@PathVariable("id") int id){
+        return movieRepository.deleteMovie(id);
+    }
+
 }
